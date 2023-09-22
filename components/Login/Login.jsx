@@ -40,7 +40,7 @@ const Login = ({ navigation }) => {
     const handlePress = async () => {
         setIsLoading(true);
         const res = await loginUser(data)
-
+        console.log("SENDING RESQUEST");
         if (res.data) {
             console.log(res.data);
             await storeToken(res.data.token)
@@ -48,15 +48,18 @@ const Login = ({ navigation }) => {
 
 
         }
-        else {
-            toast.show({
-                title: "Erreur",
-                placement: 'top'
-            })
+
+        else if (res.error) {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000);
         }
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 500);
+        else {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 1000);
+        }
+
 
     };
 
@@ -75,7 +78,7 @@ const Login = ({ navigation }) => {
 
                 <View style={styles.login}>
                     <View style={styles.logo}>
-                        <Image source={images.logo} style={{ width: 150, height: 150 }} />
+                        <Image source={images.logo} style={{ width: 200, height: 200, objectFit: 'contain' }} />
                     </View>
                     <View style={styles.form}>
 

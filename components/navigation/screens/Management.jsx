@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons'
 import Modal from 'react-native-modal';
 import Services from './Services'
 import GpsManagement from './GpsManagement'
+import MyCalendar from '../components/MyCalendar'
 
 const Management = ({ navigation }) => {
     const [serviceModal, setserviceModal] = useState(false)
@@ -16,7 +17,7 @@ const Management = ({ navigation }) => {
         setserviceModal(!serviceModal);
     };
     return (
-        <ScrollView style={{ marginTop: 50 }} >
+        <ScrollView style={{ marginTop: 50, paddingBottom: 10 }} >
             <Services isVisible={serviceModal} closeModal={toggleModalService} />
             <Flex fill direction='row' justify='center' style={styles.container}>
                 <Flex style={styles.content} justify='around' p={20} shouldRasterizeIOS>
@@ -25,7 +26,9 @@ const Management = ({ navigation }) => {
                 </Flex>
             </Flex>
 
-            <Flex mt={20} p={20}>
+
+
+            <Flex mt={20} p={20} mb={10} >
                 <ListItem
                     onPress={() => { navigation.push('GpsManagement') }}
                     trailing={<Ionicons name='chevron-forward' />} title='Incubateurs'
@@ -33,7 +36,7 @@ const Management = ({ navigation }) => {
                 />
                 <ListItem
                     onPress={() => { navigation.push('Suivie') }}
-                    trailing={<Ionicons name='chevron-forward' />} title='Historique et suivie'
+                    trailing={<Ionicons name='chevron-forward' />} title='Incubations'
                     leading={<Ionicons name='stats-chart-outline' size={25} color={COLORS.primary} />}
                 />
                 <ListItem
@@ -41,7 +44,8 @@ const Management = ({ navigation }) => {
                     leading={<Ionicons name='settings' size={25} color={COLORS.primary} />}
                 />
             </Flex>
-        </ScrollView>
+            <MyCalendar />
+        </ScrollView >
     )
 }
 

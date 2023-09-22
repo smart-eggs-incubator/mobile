@@ -13,7 +13,8 @@ const COLORS = {
   lightWhite: "#FAFAFC",
   lightBlue: "#A2B3EF",
   lightOpacity: "#f2f4f734",
-  lightOpacity2: "#e0e4ebe9"
+  lightOpacity2: "#e0e4ebe9",
+  blue: "#4d1fe6",
 };
 
 const FONT = {

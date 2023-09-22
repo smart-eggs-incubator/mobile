@@ -4,7 +4,7 @@ import { DJANGO_BASE_API_URL } from "@env"
 
 export const GpsApi = createApi({
     reducerPath: 'Gps',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://172.20.10.5:8000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: DJANGO_BASE_API_URL }),
     endpoints: (builder) => ({
         getGps: builder.query({
 

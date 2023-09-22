@@ -5,7 +5,7 @@ import { DJANGO_BASE_API_URL } from "@env"
 export const NotificationsApi = createApi({
     reducerPath: 'Notifications',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://172.20.10.5:8000/',
+        baseUrl: DJANGO_BASE_API_URL,
     }),
     endpoints: (builder) => ({
         getNotifs: builder.query({

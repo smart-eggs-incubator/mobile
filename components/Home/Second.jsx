@@ -47,9 +47,9 @@ const Second = ({ navigation }) => {
             pages={[
                 {
                     backgroundColor: COLORS.primary,
-                    image: <Image source={images.img1} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Suivie</Text>,
-                    subtitle: "Suivez vos véhicule à la trace en temps réel",
+                    image: <Image source={images.logo} style={{ width: Dimensions.get('window').width, height: 250, objectFit: 'contain' }} />,
+                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Incubez vous œuf</Text>,
+                    subtitle: "Suiviez l'evolution de vos incubations",
                 },
                 {
                     backgroundColor: COLORS.primary,

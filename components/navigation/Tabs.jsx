@@ -12,6 +12,7 @@ import Management from "./screens/Management";
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import GpsManagement from "./screens/GpsManagement";
 import Notifications from "./screens/Notifications";
+import Chat from "./screens/Chat";
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -112,6 +113,24 @@ const Tabs = () => {
                 }}
             />
 
+            <Tab.Screen name="Chat" component={Chat}
+
+                options={{
+                    title: 'Voice ',
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{}}>
+                            <Ionicons name="mic"
+                                size={25}
+                                style={{
+                                    color: focused ? COLORS.primary : COLORS.gray2
+                                }}
+                            />
+                        </View>
+                    ),
+
+                }}
+            />
             <Tab.Screen name="UserProfile" component={UserProfile}
 
                 options={{
@@ -130,6 +149,8 @@ const Tabs = () => {
 
                 }}
             />
+
+
 
 
 

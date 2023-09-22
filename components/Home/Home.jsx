@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
         <View style={styles.body}>
             <StatusBar hidden={true} />
             <View style={styles.header}>
-                <Image source={images.logo} style={{ width: 250, height: 250 }} />
+                <Image source={images.logo} style={{ width: 250, height: 250, objectFit: 'contain' }} />
             </View>
             <View style={styles.second}>
                 <Pressable style={styles.btnPressed} onPress={() => navigation.navigate('Second')}>

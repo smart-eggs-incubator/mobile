@@ -7,7 +7,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 console.log("BACKEND URL URL", DJANGO_BASE_API_URL);
 export const userAuthApi = createApi({
     reducerPath: 'userAuthApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://172.20.10.5:8000/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: DJANGO_BASE_API_URL }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (user) => {

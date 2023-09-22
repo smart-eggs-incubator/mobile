@@ -7,6 +7,8 @@ import GpsManagement from './screens/GpsManagement'
 import Suivie from './screens/Suivie'
 import GpsForm from './screens/GpsForm'
 import NotificationDetails from './screens/NotificationDetails'
+import IncubationState from './screens/IncubationState'
+import StatsFirst from './components/StatsFirst'
 
 
 const Stack = createNativeStackNavigator()
@@ -34,15 +36,29 @@ const Main = () => {
                 }}
 
             />
+            <Stack.Screen name='IncDetails'
+                component={IncubationState}
+                options={{
+                    headerTitle: 'Détails'
+                }}
+
+            />
+            <Stack.Screen name='ViewMore'
+                component={StatsFirst}
+                options={{
+                    headerTitle: 'View More...'
+                }}
+            />
 
             <Stack.Screen name='NotifsDetails'
                 component={NotificationDetails}
                 options={{
                     headerTitle: 'Notification'
                 }}
-                
+
 
             />
+
         </Stack.Navigator>
         // <NavigationContainer independent={true} 
 

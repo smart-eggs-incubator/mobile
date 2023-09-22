@@ -15,7 +15,10 @@ const GpsForm = ({ navigation }) => {
     const [fromSta, setFromSta] = useState({ serial_number: '' })
     const user = useSelector((state) => state.auth)
     const [createGps] = useCreateGpsMutation(user.user.payload.access)
-
+    const [error, setError] = useState({
+        isError: false,
+        message: ''
+    })
 
 
     const handlePress = async () => {
@@ -24,11 +27,20 @@ const GpsForm = ({ navigation }) => {
         const res = await createGps({ token: user.user.payload.access, data: { serial_number: fromSta.serial_number } })
 
         if (res.error) {
-            // console.log(res.error.status)
+            console.log(res.error);
+            if (res.error.data.message.serial_number) {
+                setError({ ...error, isError: true })
+                setError({ ...error, message: res.error.data.message.serial_number })
+
+            }
+            else {
+                setError({ ...error, isError: true })
+                setError({ ...error, message: res.error.data.message })
+
+            }
 
         }
         if (res.data) {
-
             navigation.pop()
         }
 
@@ -49,7 +61,18 @@ const GpsForm = ({ navigation }) => {
                         variant='outlined'
                         onChangeText={(target) => setFromSta({ ...fromSta, serial_number: target })}
                         leading={<Ionicons name='locate' size={25} color={COLORS.primary} />}
+                        error={!error.isError}
+
                     />
+
+
+                    {
+                        error.isError && (
+                            <>
+                                <Text style={{ color: 'red' }} > {error.message} </Text>
+                            </>
+                        )
+                    }
                     <Pressable style={{
                         backgroundColor: COLORS.primary,
                         padding: 15,

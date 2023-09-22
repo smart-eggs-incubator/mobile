@@ -45,6 +45,7 @@ const GpsManagement = ({ navigation }) => {
                                     <>
                                         {data.map((gps, key) => (
                                             <ListItem key={key}
+                                                // onPress={}
                                                 leading={<Ionicons name='locate' />}
                                                 title={(gps.serial_number)}
                                                 trailing={<Ionicons name='md-chevron-forward' />}

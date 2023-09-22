@@ -1,98 +1,90 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { Flex, TextInput } from '@react-native-material/core'
+
 import { COLORS, FONT_SIZES } from '../../../assets/constants/theme'
-import SelectComponent from '../components/SelectComponent'
-import RNPickerSelect from "react-native-picker-select";
-import { useGetGpsQuery } from '../../../src/services/api/GpsManegement'
+import { useGetIncubationsQuery } from '../../../src/services/api/HomeApi'
 import { useSelector } from 'react-redux'
-import BtnBlue from '../components/BtnBlue'
-import RNDateTimePicker from '@react-native-community/datetimepicker'
-const Suivie = () => {
-    const Value = null
-    // console.log(Value);
+import { ActivityIndicator, Divider, Flex } from '@react-native-material/core'
+
+const TextBold = ({ value }) => {
+    return (
+        <Text style={{ fontWeight: 'bold' }} >  {value}  </Text>
+    )
+}
+const Incubation = ({ incubation, onPress }) => {
+    return (
+        <Pressable
+            onPress={onPress}
+            style={{ padding: 12, backgroundColor: COLORS.white, borderRadius: 10, marginBottom: 5, elevation: 2 }} >
+            <Flex justify='between' direction='row' style={styles.incubation}>
+                <Text>  Incubateur  </Text>
+                <TextBold value={incubation.incubator.serial_number} key={0} />
+            </Flex>
+            <Flex justify='between' direction='row' style={styles.incubation}>
+                <Text>  Date de début  </Text>
+                <TextBold value={incubation.start_date} key={1} />
+            </Flex>
+        </Pressable>
+    )
+}
+
+const Suivie = ({ navigation }) => {
     const LoggedUser = useSelector((state) => state.auth)
-    const { data, isLoading, isSuccess, isError, refetch } = useGetGpsQuery(LoggedUser.user.payload.access)
-    // const [refreshing, setRefreshing] = useState(false);
-    const [selectedValue, setselectedValue] = useState('')
-    const [formData, setFormData] = useState({
-        startD: '',
-        endD: ''
-    })
-    const [gpsList, setgpsList] = useState([])
-    const [btnLoading, setbtnLoading] = useState(false)
-    if (isSuccess) {
-        let MyData = []
-        data.forEach(element => {
-            gpsList.push({ value: element.id, label: element.code })
-        });
-
-
-
-        console.log(MyData);
+    const { data, isLoading, isSuccess, isError, error, refetch } = useGetIncubationsQuery({ token: LoggedUser.user.payload.access })
+    console.log(data);
+    const handlePress = (inc) => {
+        // alert()
+        navigation.navigate('IncDetails', { inc: inc, token: LoggedUser.user.payload.access })
     }
-    const handlePress = () => {
-        setbtnLoading(true)
-        setTimeout(() => {
-            setbtnLoading(false)
-        }, 2000);
-    }
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        refetch()
+        setRefreshing(false);
+    };
 
     return (
-        <ScrollView>
-            <Flex style={styles.header} items='center' direction='row' justify='center' >
-                <Flex style={styles.headerChild} bg={COLORS.white} fill justify='center' items='center' >
-                    <Text style={{ ...FONT_SIZES.h1.h1 }}>Suivie et historique</Text>
-                </Flex>
-            </Flex>
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
+            {
+                isLoading ?
+                    (
+                        <>
+                            <ActivityIndicator />
+                        </>
+                    )
+                    :
+                    (
+                        <>
+                            {
+                                isSuccess ?
+                                    (
+                                        <Flex style={{ padding: 15 }} >
+                                            {
 
-            <Flex fill direction='row' grow={3} p={12} justify='between'>
-                <TextInput style={styles.inputSec}
-                    variant='outlined'
-                    placeholder='Date debut'
-                />
+                                                data['incubations'].map((inc, key) => {
 
-                <TextInput style={styles.inputSec}
-                    variant='outlined'
-                    placeholder='Heure de debut'
-                />
-            </Flex>
-
-            <Flex fill direction='row' grow={3} p={12} justify='between'>
-                <TextInput style={styles.inputSec}
-                    variant='outlined'
-                    placeholder='Date de fin'
-                />
-
-                <TextInput style={styles.inputSec}
-                    variant='outlined'
-                    placeholder='Heure de fin'
-                />
-            </Flex>
-
-            <View style={{ padding: 12 }}>
-                {/* <SelectComponent
-                    items={gpsList}
-                    // key={0}
-                    label='Selectionnez un gps'
-                // target={Value}
-                /> */}
-
-                <View style={styles.picker}>
-
-                    <RNPickerSelect
-                        label='Selectionnez le type de compte'
-                        onValueChange={(value) => setselectedValue(value)}
-                        items={gpsList}
-                    />
-                </View>
-
-            </View>
-
-            <View style={{ padding: 12 }}>
-                <BtnBlue label='Rechercher' isLoading={btnLoading} handlePress={handlePress} />
-            </View>
-
+                                                    return (
+                                                        <Incubation key={key} onPress={() => { handlePress(inc) }} incubation={inc} />
+                                                    )
+                                                })
+                                            }
+                                        </Flex>
+                                    )
+                                    :
+                                    (
+                                        <>
+                                            <Text>Une erreur est survenu</Text>
+                                        </>
+                                    )
+                            }
+                        </>
+                    )
+            }
 
         </ScrollView>
     )
@@ -128,5 +120,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         paddingLeft: 25
+    },
+    incubation: {
+
+        padding: 10,
+        // width: Dimensions.get('window').width / 2
     }
 })
