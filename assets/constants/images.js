@@ -7,12 +7,14 @@ import img2 from '../images/img2.png'
 import img3 from '../images/img3.png'
 import img4 from '../images/img4.png'
 import live from '../images/livecircle.png'
-
+import hen from '../images/hencover.jpg'
+import hen2 from '../images/p.jpg'
 export default {
   profile,
   logo,
   tracking,
   logovoiture, live,
   img1, img2, img3, img4,
+  hen, hen2
 
 };

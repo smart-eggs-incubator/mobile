@@ -43,32 +43,27 @@ const Second = ({ navigation }) => {
             showPagination
             // skipToPage={2}
             bottomBarHeight={100}
-            imageContainerStyles={{ backgroundColor: COLORS.primary }}
+            // imageContainerStyles={{ backgroundColor: COLORS.primary }}
             pages={[
                 {
                     backgroundColor: COLORS.primary,
                     image: <Image source={images.logo} style={{ width: Dimensions.get('window').width, height: 250, objectFit: 'contain' }} />,
-                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Incubez vous œuf</Text>,
-                    subtitle: "Suiviez l'evolution de vos incubations",
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Incubez</Text>,
+                    subtitle: "Faire éclore l’innovation, nourrir le succès L'œuf intelligent Incubateur",
                 },
                 {
                     backgroundColor: COLORS.primary,
-                    image: <Image source={images.img2} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Intervention</Text>,
-                    subtitle: "Intervention rapide des secours",
+                    image: <Image source={images.hen} style={{ width: Dimensions.get('window').width, height: 250 }} />,
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Suivie</Text>,
+                    subtitle: "Éclosion de précision, l'avenir entre vos mains L'incubateur d'œufs intelligent",
                 },
                 {
                     backgroundColor: COLORS.primary,
-                    image: <Image source={images.img3} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Tracking</Text>,
-                    subtitle: "Suivre votre véhicule de manière instantanée",
+                    image: <Image source={images.hen2} style={{ width: Dimensions.get('window').width, height: 250 }} />,
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Succès</Text>,
+                    subtitle: "Éclosion de précision, l'avenir entre vos mains L'incubateur d'œufs intelligent",
                 },
-                {
-                    backgroundColor: COLORS.primary,
-                    image: <Image source={images.img4} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 50, color: '#ffffff' }}>Ainsi</Text>,
-                    subtitle: "Sécuriser vos déplacements",
-                },
+
 
             ]}
         />

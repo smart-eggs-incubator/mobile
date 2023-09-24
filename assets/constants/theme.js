@@ -15,6 +15,7 @@ const COLORS = {
   lightOpacity: "#f2f4f734",
   lightOpacity2: "#e0e4ebe9",
   blue: "#4d1fe6",
+  opacity0: "#ff880000",
 };
 
 const FONT = {

@@ -26,7 +26,7 @@ const Main = () => {
             <Stack.Screen name='Suivie' component={Suivie}
                 options={{
                     headerLargeTitle: false,
-                    headerTitle: ''
+                    headerTitle: 'Incubations'
                 }}
             />
             <Stack.Screen name='GpsForm'

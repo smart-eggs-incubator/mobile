@@ -12,8 +12,10 @@ const TextBold = ({ value }) => {
     )
 }
 const Incubation = ({ incubation, onPress }) => {
+    // console.log(incubation);
     return (
         <Pressable
+            // onLongPress={}
             onPress={onPress}
             style={{ padding: 12, backgroundColor: COLORS.white, borderRadius: 10, marginBottom: 5, elevation: 2 }} >
             <Flex justify='between' direction='row' style={styles.incubation}>
@@ -23,6 +25,34 @@ const Incubation = ({ incubation, onPress }) => {
             <Flex justify='between' direction='row' style={styles.incubation}>
                 <Text>  Date de début  </Text>
                 <TextBold value={incubation.start_date} key={1} />
+            </Flex>
+
+            <Flex justify='between' direction='row' style={styles.incubation}>
+                <Text>  Type  </Text>
+                <TextBold value={incubation.incubation_type.name} key={1} />
+            </Flex>
+            <Flex justify='between' direction='row' style={styles.incubation}>
+                <Text>  Type  </Text>
+                <TextBold value={incubation.incubation_type.name} key={1} />
+            </Flex>
+            <Flex justify='between' direction='row' fill p={12} >
+                <Text> Etat </Text>
+                {
+                    incubation.state ?
+                        (
+                            <Flex direction='row' >
+                                <Text> En cours </Text>
+                                <View style={{ padding: 10, backgroundColor: 'red', borderRadius: 100, marginHorizontal: 10 }} ></View>
+                            </Flex>
+                        )
+                        :
+                        (
+                            <Flex direction='row' >
+                                <Text> Terminé </Text>
+                                <View style={{ padding: 10, backgroundColor: 'green', borderRadius: 100, marginHorizontal: 10 }} ></View>
+                            </Flex>
+                        )
+                }
             </Flex>
         </Pressable>
     )
@@ -50,7 +80,9 @@ const Suivie = ({ navigation }) => {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
         >
+
             {
+
                 isLoading ?
                     (
                         <>

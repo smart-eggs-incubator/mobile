@@ -36,8 +36,22 @@ export const HomeApi = createApi({
                     }
                 }
             }
+        }),
+        getIncubationSevedData: builder.query({
+            query: ({ id, inc, token }) => {
+                return {
+                    url: `incubation_saved_data/${id}/${inc}/`,
+                    headers: {
+                        'authorization': `Bearer ${token}`,
+                    }
+                }
+            }
         })
     })
 })
 
-export const { useGetAllQuery, useGetIncubationsQuery, useGetIncubationsStateQuery } = HomeApi
+export const { useGetAllQuery,
+    useGetIncubationsQuery,
+    useGetIncubationsStateQuery,
+    useGetIncubationSevedDataQuery
+} = HomeApi

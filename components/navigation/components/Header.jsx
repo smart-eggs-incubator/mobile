@@ -1,12 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Flex } from '@react-native-material/core'
 import Ionicons from '@expo/vector-icons/Ionicons';
 export default function Header() {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+    const [localTemperature, setLocalTemperature] = useState(0)
     const date = new Date().getDate() + " " + monthNames[new Date().getUTCMonth() - 1] + " " + new Date().getFullYear()
+    const weather = fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/yaounde?key=XSUXP5RCZHLPT3UF8N657C9RL')
+    weather.then((res) => {
+        res.json().then((data) => {
+            const temp = (data.days[0].temp - 32) * (5 / 9)
+            // console.log('COMMING DATA ', temp.toFixed(2));
+            setLocalTemperature(temp.toFixed(2))
+
+        })
+    })
     return (
         <View style={styles.header}>
             {/* <Flex fill direction='row' justify='between'>
@@ -25,7 +35,7 @@ export default function Header() {
                 <Flex direction='row' items='center'>
 
                     <Ionicons name='sunny' size={35} color={'yellow'} />
-                    <Text style={styles.text}>23 degrees</Text>
+                    <Text style={styles.text}>{localTemperature} °C </Text>
                 </Flex>
 
                 <Flex direction='row' items='center'>
@@ -50,7 +60,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 15,
-        marginLeft: 10
+        fontSize: 17,
+        marginLeft: 10,
+        fontWeight: 'bold',
     }
 })

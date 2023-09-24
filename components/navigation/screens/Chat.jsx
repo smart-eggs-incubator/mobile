@@ -4,7 +4,7 @@ import { COLORS, SHADOWS } from '../../../assets/constants/theme'
 import { Flex } from '@react-native-material/core'
 import { Ionicons } from '@expo/vector-icons'
 import { useState } from 'react'
-import * as Speech from 'expo-speech'
+// import * as Speech from 'expo-speech'
 
 // import * as ExpoStt from 'expo-stt';
 
@@ -35,7 +35,7 @@ const Chat = () => {
         setThird(false)
         // speechGreating()
         // Speech.VoiceQuality('')
-        Speech.speak('HELLO, DANIEL , i am your virtual assistant ?')
+        // Speech.speak('HELLO, DANIEL , i am your virtual assistant ?')
 
     }
     const handlePresssend = () => {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         padding: 30,
         elevation: 2,
         borderRadius: 200,
-        ...SHADOWS.medium
+        // ...SHADOWS.medium
 
     }
 

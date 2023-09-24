@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 // import Header from '../components/Header'
 import { Button, Flex } from '@react-native-material/core'
@@ -12,34 +12,16 @@ import { Calendar } from 'react-native-calendars';
 import MyCalendar from '../components/MyCalendar';
 
 import { useGetIncubationsStateQuery } from '../../../src/services/api/HomeApi';
+import { COLORS } from '../../../assets/constants/theme';
 
 
 export default function IncubationState({ route, navigation }) {
     const [selected, setSelected] = useState('');
     const { inc, token } = route.params
     console.log('ID SELECTABLE ', inc);
-    const data1 = [
-        { x: -2, y: 1 },
-        { x: -1, y: 0 },
-        { x: 8, y: 13 },
-        { x: 9, y: 11.5 },
-        { x: 10, y: 8 },
-        { x: 12, y: 6 },
-        { x: 14, y: 4 }
-    ]
 
-    const data2 = [
-        { x: -2, y: 15 },
-        { x: -1, y: 10 },
-        { x: 0, y: 12 },
-        { x: 1, y: 7 },
-        { x: 8, y: -5 },
-        { x: 9, y: 13.5 },
-        { x: 10, y: 8 }
-    ]
-
-    const { data } = useGetIncubationsStateQuery({ id: inc.incubator.serial_number, token: token })
-    console.log('FETCHED DATA : ', data);
+    const { data, refetch } = useGetIncubationsStateQuery({ id: inc.incubator.serial_number, token: token })
+    // console.log('FETCHED DATA : ', data);
 
     const startDate = '2023-09-15'; // Start date in YYYY-MM-DD format
     const endDate = '2023-09-30';   // End date in YYYY-MM-DD format
@@ -52,22 +34,34 @@ export default function IncubationState({ route, navigation }) {
 
     while (currentDate <= new Date(endDate)) {
         const dateString = currentDate.toISOString().split('T')[0];
-        markedDates[dateString] = { selected: true },
+        markedDates[dateString] = {
+            selected: true,
+            // color: COLORS.primary,
+            // textColor: 'white',
+            // disabled: true,
+        },
             currentDate.setDate(currentDate.getDate() + 1);
     }
-    console.log(markedDates);
-
+    // console.log(markedDates);
+    const [refreshing, setRefreshing] = useState(false);
+    const onRefresh = () => {
+        refetch()
+    }
     return (
-        <ScrollView style={{ backgroundColor: 'white' }}>
+        <ScrollView style={{ backgroundColor: 'white' }}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
+
             <Header />
             <Flex justify='end' direction='row' fill p={10} >
-                <Button onPress={() => { navigation.navigate('ViewMore') }} variant='outlined' title='View more' />
-
+                <Button onPress={() => { navigation.navigate('ViewMore', { info: inc, token: token }) }} variant='outlined' title='View more' />
             </Flex>
             <MyCalendar />
 
             <Calendar
-
+                markingType="multi-dot"
                 markedDates={markedDates}
             />
 
@@ -109,9 +103,15 @@ export default function IncubationState({ route, navigation }) {
                             />
                             <StatValue
                                 icon={'md-thermometer-sharp'}
-                                value={'0.6'}
-                                mesure={'Liters'}
-                                title={"Water Level"}
+                                value={data.water_level1}
+                                mesure={'Ml'}
+                                title={"Water Level 1"}
+                            />
+                            <StatValue
+                                icon={'md-thermometer-sharp'}
+                                value={data.water_level2}
+                                mesure={'Ml'}
+                                title={"Water Level 2"}
                             />
                             <StatValue
                                 icon={'speedometer'}

@@ -18,7 +18,7 @@ const Notifications = ({ navigation }) => {
         refetch()
         setRefreshing(false);
     };
-    console.log(error);
+    // console.log(error);
     return (
         <ScrollView
             style={{ marginTop: 50 }}

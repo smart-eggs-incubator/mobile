@@ -6,7 +6,7 @@ const MyCalendar = ({ markedDate }) => {
 
     const [selected, setSelected] = useState('');
     return (
-        <View style={{ padding: 20, shadowOffset: 5, shadowColor: 'gray', shadowOpacity: .5, borderRadius: 10, shadowRadius: 5 }}>
+        <View style={{ padding: 20, backgroundColor: 'white', shadowOffset: 5, shadowColor: 'gray', shadowOpacity: .5, borderRadius: 10, shadowRadius: 5 }}>
             <Calendar
                 style={{ borderRadius: 1 }}
                 onDayPress={day => {

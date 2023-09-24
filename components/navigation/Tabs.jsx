@@ -23,13 +23,14 @@ const Tabs = () => {
             screenOptions={{
                 headerTitle: '',
                 tabBarItemStyle: {
-                    // marginBottom: 10
+                    // marginBottom: 10,
+
                 },
                 tabBarStyle: {
-                    // marginTop: 20,
-                    // paddingVertical: 20,
+                    marginTop: 20,
+                    paddingVertical: 20,
 
-                    // height: 80,
+                    height: 80,
 
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -37,10 +38,10 @@ const Tabs = () => {
                     bottom: 25,
                     left: 20,
                     right: 20,
-                    borderRadius: 15,
+                    borderRadius: 5,
                     elevation: 0,
                     height: 90,
-                    backgroundColor: 'white', // Change to your desired background color
+                    // backgroundColor: 'white', // Change to your desired background color
                     borderTopWidth: 1, // Add a border to the top of the tab bar
                     borderTopColor: '#dddddd', // Border color
                     paddingHorizontal: 10,
@@ -116,7 +117,8 @@ const Tabs = () => {
             <Tab.Screen name="Chat" component={Chat}
 
                 options={{
-                    title: 'Voice ',
+                    title: 'Voice',
+
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <View style={{}}>

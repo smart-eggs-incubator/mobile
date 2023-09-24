@@ -44,7 +44,10 @@ const Management = ({ navigation }) => {
                     leading={<Ionicons name='settings' size={25} color={COLORS.primary} />}
                 />
             </Flex>
-            <MyCalendar />
+            <View style={{ padding: 20 }} >
+                <MyCalendar />
+            </View>
+            <View style={{ height: 100 }} ></View>
         </ScrollView >
     )
 }

@@ -89,8 +89,6 @@ const Profile = () => {
 
                 // style={{ width: 10, height: 10 }}
                 // image={(<Image source={images.logovoiture} />)}
-
-
                 />
                 {/* <MapViewDirections
                     origin={markerPosition}

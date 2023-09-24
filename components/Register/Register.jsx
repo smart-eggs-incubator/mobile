@@ -1,20 +1,23 @@
-import { View, Text, ScrollView, StyleSheet, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet } from 'react-native'
 import { COLORS } from '../../assets/constants/theme'
-import { ActivityIndicator, Box, Flex, TextInput } from '@react-native-material/core'
-import { Ionicons } from '@expo/vector-icons'
-import { useDispatch } from 'react-redux'
+import { View, Text, ScrollView, Pressable } from 'react-native';
+import React, { useState } from 'react';
 
-import { useRegisterUserMutation } from '../../src/services/userAuthApi'
-import { storeToken } from '../../src/services/AsyncStorageServices'
-import { setAuthAsTrue } from '../../src/services/AuthSateSlice'
+import { ActivityIndicator, Box, Flex, TextInput } from '@react-native-material/core';
+import { Ionicons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+import { useRegisterUserMutation } from '../../src/services/userAuthApi';
+import { storeToken } from '../../src/services/AsyncStorageServices';
+import { setAuthAsTrue } from '../../src/services/AuthSateSlice';
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
 import RNPickerSelect from "react-native-picker-select";
+// import { Register } from './Register'
 
-const Register = ({ navigation }) => {
-    const dispatch = useDispatch()
-    const [isLoading, setIsLoading] = useState(false)
-    const [registerUser] = useRegisterUserMutation()
+
+export const Register = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
+    const [registerUser] = useRegisterUserMutation();
     const [postData, setPostData] = useState({
         email: '',
         name: '',
@@ -22,16 +25,16 @@ const Register = ({ navigation }) => {
         password2: '',
         tc: true,
         type_de_compte: 'Particulier'
-    })
+    });
     const handlePress = async () => {
         setIsLoading(true);
-        const res = await registerUser(postData)
+        const res = await registerUser(postData);
         if (res.data) {
-            await storeToken(res.data.token)
-            dispatch(setAuthAsTrue())
+            await storeToken(res.data.token);
+            dispatch(setAuthAsTrue());
         }
         if (res.error) {
-            console.log(res.error.data.errors)
+            console.log(res.error.data.errors);
             // console.log(res.error);
         }
         setTimeout(() => {
@@ -41,9 +44,9 @@ const Register = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.scrollContentContainer} style={{ backgroundColor: COLORS.white }}>
             <View style={styles.header}>
-                <Text style={styles.registerText} > Register</Text>
+                <Text style={styles.registerText}> Register</Text>
             </View>
-            <View style={styles.background} >
+            <View style={styles.background}>
                 {/* <Image source={images.tracking} /> */}
             </View>
 
@@ -57,8 +60,7 @@ const Register = ({ navigation }) => {
                         placeholder='Email'
                         variant='outlined'
                         color={COLORS.gray}
-                        leading={<Ionicons name='mail' size={20} color={COLORS.gray} />}
-                    />
+                        leading={<Ionicons name='mail' size={20} color={COLORS.gray} />} />
                     <TextInput
                         onChangeText={(target) => setPostData({ ...postData, name: target })}
                         style={styles.input}
@@ -66,8 +68,7 @@ const Register = ({ navigation }) => {
                         placeholder='Name'
                         variant='outlined'
                         color={COLORS.gray}
-                        leading={<Ionicons name='person' size={20} color={COLORS.gray} />}
-                    />
+                        leading={<Ionicons name='person' size={20} color={COLORS.gray} />} />
 
                     <TextInput
                         onChangeText={(target) => setPostData({ ...postData, password: target })}
@@ -77,8 +78,7 @@ const Register = ({ navigation }) => {
                         secureTextEntry
                         placeholder='Password'
                         color={COLORS.lightBlue}
-                        leading={<Ionicons name='lock-closed' size={20} color={COLORS.gray} />}
-                    />
+                        leading={<Ionicons name='lock-closed' size={20} color={COLORS.gray} />} />
                     <TextInput
                         onChangeText={(target) => setPostData({ ...postData, password2: target })}
                         style={styles.input}
@@ -87,8 +87,7 @@ const Register = ({ navigation }) => {
                         secureTextEntry
                         placeholder='Confirm password'
                         color={COLORS.lightBlue}
-                        leading={<Ionicons name='lock-closed' size={20} color={COLORS.gray} />}
-                    />
+                        leading={<Ionicons name='lock-closed' size={20} color={COLORS.gray} />} />
 
                     <Pressable style={{
                         backgroundColor: COLORS.primary,
@@ -113,7 +112,7 @@ const Register = ({ navigation }) => {
             <Flex fill justify='center' direction='row' style={styles.loginSection}>
 
                 <Pressable style={styles.registerBtn} onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.registerBtnText} >Login</Text>
+                    <Text style={styles.registerBtnText}>Login</Text>
                 </Pressable>
             </Flex>
             <Box style={{
@@ -122,11 +121,11 @@ const Register = ({ navigation }) => {
                 zIndex: -1
             }}></Box>
         </ScrollView>
-    )
-}
+    );
+};
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     header: {
         backgroundColor: COLORS.primary,
         width: '100%',

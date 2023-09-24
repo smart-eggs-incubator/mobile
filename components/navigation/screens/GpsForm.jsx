@@ -23,11 +23,11 @@ const GpsForm = ({ navigation }) => {
 
     const handlePress = async () => {
         setIsLoading(true);
-        console.log("SERIAL NUMBER", fromSta.serial_number);
+        // console.log("SERIAL NUMBER", fromSta.serial_number);
         const res = await createGps({ token: user.user.payload.access, data: { serial_number: fromSta.serial_number } })
 
         if (res.error) {
-            console.log(res.error);
+            // console.log(res.error);
             if (res.error.data.message.serial_number) {
                 setError({ ...error, isError: true })
                 setError({ ...error, message: res.error.data.message.serial_number })
@@ -67,7 +67,7 @@ const GpsForm = ({ navigation }) => {
 
 
                     {
-                        error.isError && (
+                        !error.isError && (
                             <>
                                 <Text style={{ color: 'red' }} > {error.message} </Text>
                             </>

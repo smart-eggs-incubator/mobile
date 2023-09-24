@@ -11,8 +11,40 @@ import { Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator, Divider } from '@react-native-material/core';
 import { useGetAllQuery } from '../../../src/services/api/HomeApi';
 import { useSelector } from 'react-redux';
+import { LinearGradient } from 'expo-linear-gradient';
+
 import MyCalendar from '../components/MyCalendar';
 
+
+const Dash = ({ fromcolor, tocolor, icon, title, value }) => {
+    return (
+        <View style={{ padding: 20 }} >
+
+            <LinearGradient
+                colors={[fromcolor, tocolor]}
+                style={{ borderRadius: 5 }}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+            >
+                <Flex p={20} ph={50} direction='row' fill justify='between' items='center'  >
+                    <View>
+                        <Text style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }} > {value} </Text>
+                        <Text style={{ fontSize: 25, color: 'white' }}> {title} </Text>
+                    </View>
+                    <View>
+                        <Ionicons name={icon} size={70} color={'white'} />
+                    </View>
+                </Flex>
+
+                <Divider color='white' />
+                <Flex p={10} >
+                    <Text style={{ fontSize: 15, color: 'white', marginLeft: 25 }}>  </Text>
+                </Flex>
+            </LinearGradient>
+        </View>
+
+    )
+}
 const Home = () => {
 
     const [token, setToken] = useState('')
@@ -25,7 +57,6 @@ const Home = () => {
     // console.log(data);
     return (
         <ScrollView style={{ marginTop: 50 }} >
-
             <View style={styles.header} >
                 <View style={styles.headerContent}>
                     <Text style={styles.welcome}  > <Ionicons name='home' size={50} /> Bienvenue  </Text>
@@ -33,6 +64,7 @@ const Home = () => {
                 </View>
             </View>
             <Divider />
+
 
             {
                 isLoading ?
@@ -44,47 +76,18 @@ const Home = () => {
                     ) :
                     (
                         <>
-                            <Flex wrap='wrap' direction='row' fill justify='between' style={{ gap: 10, padding: 20 }}>
-                                <View style={{ ...styles.card, backgroundColor: COLORS.white }}>
-                                    <Text style={{}}>Incubateurs</Text>
-                                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} >
-                                        <Ionicons name='egg' size={70} color={COLORS.blue} />  {data.incubators_count}
-                                    </Text>
-                                </View>
-                                <View style={{ ...styles.card, backgroundColor: COLORS.lightWhite }}>
-                                    <Text style={{}}>Incubations</Text>
-                                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} >
-                                        <Ionicons name='egg-sharp' size={70} color={'red'} />  {data.incubations}
-                                    </Text>
-                                </View>
-                                <View style={{ ...styles.card, backgroundColor: COLORS.white }}>
-                                    <Text style={{}}>Rapports</Text>
-                                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} >
-                                        <Ionicons name='document-attach' size={70} color={'green'} />  {data.incubations}
-                                    </Text>
-                                </View>
-                                <View style={{ ...styles.card, backgroundColor: COLORS.white }}>
-                                    <Text style={{}}>Incubations</Text>
-                                    <Text style={{ fontSize: 20, fontWeight: 'bold' }} >
-                                        <Ionicons name='egg-sharp' size={70} color={'yellow'} />  {data.incubations}
-                                    </Text>
-                                </View>
-                            </Flex>
-                            {/* <View>
-                                <Flex fill justify='around' direction='row' alignItems='center' >
-                                    <View>
-                                        <Ionicons name='locate' size={70} color={COLORS.tertiary} />
-                                    </View>
-                                    <View>
-                                        <Text style={{ fontSize: 40, color: COLORS.tertiary }}>Mes Incubateurs</Text>
-                                    </View>
-                                </Flex>
 
-                            </View> */}
-                            <View style={{ height: 150 }}></View>
+                            <Dash fromcolor={'#055aaf'} tocolor={'#00d4ff'} icon={'egg'} value={data.incubators_count} title={'incubateurs'} />
+                            <Dash fromcolor={'#e41e1e'} tocolor={'#f85e5e'} icon={'egg'} value={data.incubations} title={'Incubations'} />
+                            <Dash fromcolor={'#02c80c'} tocolor={'#6ce872'} icon={'document-attach'} value={data.incubators_count} title={'Rapports'} />
+                            <Dash fromcolor={'#f08501'} tocolor={'#efbc2b'} icon={'egg'} value={data.incubators_count} title={'incubateurs'} />
+
+
+                            <View style={{ height: 50 }}></View>
                         </>
                     )
             }
+            <View style={{ height: 40 }} ></View>
         </ScrollView>
 
     )

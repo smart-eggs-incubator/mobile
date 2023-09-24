@@ -36,23 +36,27 @@ const Login = ({ navigation }) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
+    const [isError, setIsError] = useState(false)
     const user = useSelector((state) => state.auth)
     const handlePress = async () => {
         setIsLoading(true);
+        setIsError(false)
         const res = await loginUser(data)
-        console.log("SENDING RESQUEST");
+        // console.log("SENDING RESQUEST");
         if (res.data) {
-            console.log(res.data);
+            // console.log(res.data);
             await storeToken(res.data.token)
             dispatch(setAuthAsTrue(res.data.token))
-
 
         }
 
         else if (res.error) {
+            // console.log(res.error.data.errors);
             setTimeout(() => {
                 setIsLoading(false);
+                setIsError(true)
             }, 1000);
+
         }
         else {
             setTimeout(() => {
@@ -81,6 +85,28 @@ const Login = ({ navigation }) => {
                         <Image source={images.logo} style={{ width: 200, height: 200, objectFit: 'contain' }} />
                     </View>
                     <View style={styles.form}>
+                        {
+                            isError &&
+                            (
+                                <>
+                                    <View style={{
+                                        backgroundColor: '#fc5858',
+                                        padding: 20,
+                                        textAlign: 'center',
+                                        borderRadius: 7
+                                    }}>
+                                        <Text
+                                            style={{
+                                                textAlign: "center",
+                                                fontSize: 15,
+                                                fontWeight: 'bold',
+                                                color: 'white',
+                                            }}
+                                        > Login ou mot de passe incorrect </Text>
+                                    </View>
+                                </>
+                            )
+                        }
 
                         <TextInput
                             inputContainerStyle={{ backgroundColor: COLORS.lightWhite }}
