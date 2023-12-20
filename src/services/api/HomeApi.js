@@ -5,7 +5,7 @@ import { DJANGO_BASE_API_URL } from "@env"
 
 export const HomeApi = createApi({
     reducerPath: 'homeApi',
-    baseQuery: fetchBaseQuery({ baseUrl: DJANGO_BASE_API_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.DJANGO_BASE_API_URL }),
     endpoints: (builder) => ({
         getAll: builder.query({
             query: ({ token }) => {
@@ -28,9 +28,9 @@ export const HomeApi = createApi({
             }
         }),
         getIncubationsState: builder.query({
-            query: ({ id, token }) => {
+            query: ({ id, inc, token }) => {
                 return {
-                    url: `incubation_state/${id}/`,
+                    url: `incubation_state/${id}/${inc}/`,
                     headers: {
                         'authorization': `Bearer ${token}`,
                     }
@@ -46,6 +46,72 @@ export const HomeApi = createApi({
                     }
                 }
             }
+        }),
+        getDataForIncCreation: builder.query({
+            query: ({ token }) => {
+                return {
+                    url: `get_data_create_incubation/`,
+
+                    headers: {
+
+                        'authorization': `Bearer ${token}`,
+                    }
+                }
+            }
+        }),
+
+        doAction: builder.mutation({
+            query: ({ token, id, body }) => {
+                return {
+                    url: `do_action/${id}/`,
+                    method: "POST",
+                    headers: {
+                        'authorization': `Bearer ${token}`,
+                    },
+                    body: body
+
+                }
+            }
+        }),
+
+        CreateIncubation: builder.mutation({
+            query: ({ token, body }) => {
+                return {
+                    url: `create_incubation/`,
+                    method: "POST",
+                    headers: {
+                        'authorization': `Bearer ${token}`,
+                    },
+                    body: body
+
+                }
+            }
+        }),
+        NoteIncubation: builder.mutation({
+            query: ({ token, body }) => {
+                return {
+                    url: `note_incubation/`,
+                    method: "POST",
+                    headers: {
+                        'authorization': `Bearer ${token}`,
+                    },
+                    body: body
+
+                }
+            }
+        }),
+        getNote: builder.query({
+            query: ({ token, id }) => {
+                return {
+                    url: `ncubation_note/${id}/`,
+                    method: "GET",
+                    headers: {
+                        'authorization': `Bearer ${token}`,
+                    },
+
+
+                }
+            }
         })
     })
 })
@@ -53,5 +119,10 @@ export const HomeApi = createApi({
 export const { useGetAllQuery,
     useGetIncubationsQuery,
     useGetIncubationsStateQuery,
-    useGetIncubationSevedDataQuery
+    useGetIncubationSevedDataQuery,
+    useGetDataForIncCreationQuery,
+    useDoActionMutation,
+    useCreateIncubationMutation,
+    useNoteIncubationMutation,
+    useGetNoteQuery
 } = HomeApi

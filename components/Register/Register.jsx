@@ -44,7 +44,7 @@ export const Register = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.scrollContentContainer} style={{ backgroundColor: COLORS.white }}>
             <View style={styles.header}>
-                <Text style={styles.registerText}> Register</Text>
+                <Text style={styles.registerText}> Registration </Text>
             </View>
             <View style={styles.background}>
                 {/* <Image source={images.tracking} /> */}

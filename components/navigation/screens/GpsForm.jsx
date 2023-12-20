@@ -53,10 +53,10 @@ const GpsForm = ({ navigation }) => {
         <ScrollView>
             <Flex fill justify='center' p={10} style={styles.from}>
                 <View bg={COLORS.white} p={10} fill>
-                    <Text style={{ marginBottom: 5 }} > Numero de série</Text>
+                    <Text style={{ marginBottom: 5 }} > Serial number</Text>
                     <TextInput
 
-                        placeholder='Numero de série'
+                        placeholder='Serial number'
                         inputMode='text'
                         variant='outlined'
                         onChangeText={(target) => setFromSta({ ...fromSta, serial_number: target })}
@@ -86,7 +86,7 @@ const GpsForm = ({ navigation }) => {
                         {isLoading ? (
                             <ActivityIndicator color="white" />
                         ) : (
-                            <Text style={{ textAlign: 'center', color: COLORS.white, fontSize: 25 }}> Valider </Text>
+                            <Text style={{ textAlign: 'center', color: COLORS.white, fontSize: 25 }}>validate </Text>
 
                         )}
                     </Pressable>

@@ -59,8 +59,8 @@ const Home = () => {
         <ScrollView style={{ marginTop: 50 }} >
             <View style={styles.header} >
                 <View style={styles.headerContent}>
-                    <Text style={styles.welcome}  > <Ionicons name='home' size={50} /> Bienvenue  </Text>
-                    <Text style={styles.welcomeMessage}> Profilez au maximum  😀 </Text>
+                    <Text style={styles.welcome}  > <Ionicons name='home' size={50} /> Welcome  </Text>
+                    <Text style={styles.welcomeMessage}> Profile to the maximum  😀 </Text>
                 </View>
             </View>
             <Divider />
@@ -76,10 +76,10 @@ const Home = () => {
                     ) :
                     (
                         <>
-
-                            <Dash fromcolor={'#055aaf'} tocolor={'#00d4ff'} icon={'egg'} value={data.incubators_count} title={'incubateurs'} />
-                            <Dash fromcolor={'#e41e1e'} tocolor={'#f85e5e'} icon={'egg'} value={data.incubations} title={'Incubations'} />
-                            <Dash fromcolor={'#02c80c'} tocolor={'#6ce872'} icon={'document-attach'} value={data.incubators_count} title={'Rapports'} />
+                            {/* <Ionicons name='calendar' /> */}
+                            <Dash fromcolor={'#055aaf'} tocolor={'#00d4ff'} icon={'egg'} value={data.incubators_count} title={'incubators'} />
+                            <Dash fromcolor={'#e41e1e'} tocolor={'#f85e5e'} icon={'calendar'} value={data.incubations + 10} title={'Incubations'} />
+                            <Dash fromcolor={'#02c80c'} tocolor={'#6ce872'} icon={'document-attach'} value={data.incubators_count + 1} title={'Repports'} />
                             <Dash fromcolor={'#f08501'} tocolor={'#efbc2b'} icon={'egg'} value={data.incubators_count} title={'incubateurs'} />
 
 

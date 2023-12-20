@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
             </View>
             <View style={styles.second}>
                 <Pressable style={styles.btnPressed} onPress={() => navigation.navigate('Second')}>
-                    <Text style={styles.btnPressedTxt}> Commencer </Text>
+                    <Text style={styles.btnPressedTxt}> Get Started </Text>
                 </Pressable>
             </View>
         </View>

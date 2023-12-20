@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import { COLORS, FONT_SIZES } from '../../../assets/constants/theme'
 import { useGetIncubationsQuery } from '../../../src/services/api/HomeApi'
 import { useSelector } from 'react-redux'
-import { ActivityIndicator, Divider, Flex } from '@react-native-material/core'
+import { ActivityIndicator, Divider, Flex, IconButton } from '@react-native-material/core'
+import { Ionicons } from '@expo/vector-icons'
 
 const TextBold = ({ value }) => {
     return (
@@ -19,11 +20,15 @@ const Incubation = ({ incubation, onPress }) => {
             onPress={onPress}
             style={{ padding: 12, backgroundColor: COLORS.white, borderRadius: 10, marginBottom: 5, elevation: 2 }} >
             <Flex justify='between' direction='row' style={styles.incubation}>
-                <Text>  Incubateur  </Text>
+                <Text>  Incubator  </Text>
                 <TextBold value={incubation.incubator.serial_number} key={0} />
             </Flex>
             <Flex justify='between' direction='row' style={styles.incubation}>
-                <Text>  Date de début  </Text>
+                <Text>  ID  </Text>
+                <TextBold value={incubation.id} key={0} />
+            </Flex>
+            <Flex justify='between' direction='row' style={styles.incubation}>
+                <Text>  Start date  </Text>
                 <TextBold value={incubation.start_date} key={1} />
             </Flex>
 
@@ -31,26 +36,47 @@ const Incubation = ({ incubation, onPress }) => {
                 <Text>  Type  </Text>
                 <TextBold value={incubation.incubation_type.name} key={1} />
             </Flex>
-            <Flex justify='between' direction='row' style={styles.incubation}>
+            {/* <Flex justify='between' direction='row' style={styles.incubation}>
                 <Text>  Type  </Text>
                 <TextBold value={incubation.incubation_type.name} key={1} />
-            </Flex>
+            </Flex> */}
             <Flex justify='between' direction='row' fill p={12} >
-                <Text> Etat </Text>
+                <Text> State </Text>
                 {
-                    incubation.state ?
+                    incubation.state == 'FINISHED' ?
                         (
                             <Flex direction='row' >
-                                <Text> En cours </Text>
+                                <Text> FINISHED </Text>
                                 <View style={{ padding: 10, backgroundColor: 'red', borderRadius: 100, marginHorizontal: 10 }} ></View>
                             </Flex>
                         )
                         :
                         (
-                            <Flex direction='row' >
-                                <Text> Terminé </Text>
-                                <View style={{ padding: 10, backgroundColor: 'green', borderRadius: 100, marginHorizontal: 10 }} ></View>
-                            </Flex>
+                            <>
+                                {
+                                    incubation.state == 'IN PROGRESS' ?
+
+                                        (
+                                            <>
+                                                <Flex direction='row' >
+                                                    <Text> IN PROGRESS </Text>
+                                                    <View style={{ padding: 10, backgroundColor: 'green', borderRadius: 100, marginHorizontal: 10 }} ></View>
+                                                </Flex>
+                                            </>
+                                        )
+                                        :
+                                        (
+                                            <>
+                                                <>
+                                                    <Flex direction='row' >
+                                                        <Text> PENDING </Text>
+                                                        <View style={{ padding: 10, backgroundColor: 'black', borderRadius: 100, marginHorizontal: 10 }} ></View>
+                                                    </Flex>
+                                                </>
+                                            </>
+                                        )
+                                }
+                            </>
                         )
                 }
             </Flex>
@@ -81,6 +107,14 @@ const Suivie = ({ navigation }) => {
             }
         >
 
+            <Flex direction='row' justify='end' p={20} >
+                <IconButton
+                    onPress={() => { navigation.push('FormIncubation') }}
+                    backgroundColor={COLORS.primary}
+
+                    icon={<Ionicons name='add' color={COLORS.white} size={30} />} />
+            </Flex>
+
             {
 
                 isLoading ?
@@ -110,7 +144,7 @@ const Suivie = ({ navigation }) => {
                                     :
                                     (
                                         <>
-                                            <Text>Une erreur est survenu</Text>
+                                            <Text>An error has occurred</Text>
                                         </>
                                     )
                             }

@@ -26,7 +26,7 @@ const Done = ({ ...props }) => (
         }}
         {...props}
     >
-        <Text style={{ color: "#ffffff", fontSize: 18 }}>Se Connecter</Text>
+        <Text style={{ color: "#ffffff", fontSize: 18 }}> Login</Text>
     </TouchableOpacity>
 )
 
@@ -38,8 +38,8 @@ const Second = ({ navigation }) => {
             DotComponent={Dots}
             DoneButtonComponent={Done}
             borderBottomColor='#8A4EFC'
-            skipLabel='Ignorer'
-            nextLabel='Suivant'
+            skipLabel='Ignore'
+            nextLabel='Next'
             showPagination
             // skipToPage={2}
             bottomBarHeight={100}
@@ -48,20 +48,20 @@ const Second = ({ navigation }) => {
                 {
                     backgroundColor: COLORS.primary,
                     image: <Image source={images.logo} style={{ width: Dimensions.get('window').width, height: 250, objectFit: 'contain' }} />,
-                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Incubez</Text>,
-                    subtitle: "Faire éclore l’innovation, nourrir le succès L'œuf intelligent Incubateur",
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Incubate</Text>,
+                    subtitle: "Hatching innovation, nurturing success The intelligent incubator egg",
                 },
                 {
                     backgroundColor: COLORS.primary,
                     image: <Image source={images.hen} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Suivie</Text>,
-                    subtitle: "Éclosion de précision, l'avenir entre vos mains L'incubateur d'œufs intelligent",
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Tracked</Text>,
+                    subtitle: "Precision hatching, the future in your hands The intelligent egg incubator",
                 },
                 {
                     backgroundColor: COLORS.primary,
                     image: <Image source={images.hen2} style={{ width: Dimensions.get('window').width, height: 250 }} />,
-                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Succès</Text>,
-                    subtitle: "Éclosion de précision, l'avenir entre vos mains L'incubateur d'œufs intelligent",
+                    title: <Text style={{ fontSize: 30, color: '#ffffff' }}>Success</Text>,
+                    subtitle: "Precision hatching, the future in your hands The intelligent egg incubator",
                 },
 
 

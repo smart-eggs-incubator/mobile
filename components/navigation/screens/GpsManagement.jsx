@@ -27,7 +27,7 @@ const GpsManagement = ({ navigation }) => {
                 onPress={() => navigation.navigate('GpsForm')}
             />
             <Divider />
-            <Text style={styles.title} >Liste de vos Incubateurs</Text>
+            <Text style={styles.title} >List of your Incubators</Text>
             <View style={{ padding: 14 }}>
                 {
                     !isSuccess ?

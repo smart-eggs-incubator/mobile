@@ -21,8 +21,8 @@ const Management = ({ navigation }) => {
             <Services isVisible={serviceModal} closeModal={toggleModalService} />
             <Flex fill direction='row' justify='center' style={styles.container}>
                 <Flex style={styles.content} justify='around' p={20} shouldRasterizeIOS>
-                    <Text style={{ ...FONT_SIZES.h1.h1, color: COLORS.primary }}> <Ionicons name='settings' size={100} color={COLORS.primary} /> Gestion  </Text>
-                    <Text style={FONT_SIZES.h2.h2}>Managez vos incubateurs</Text>
+                    <Text style={{ ...FONT_SIZES.h1.h1, color: COLORS.primary }}> <Ionicons name='settings' size={100} color={COLORS.primary} /> Management  </Text>
+                    <Text style={FONT_SIZES.h2.h2}>Manage your incubators</Text>
                 </Flex>
             </Flex>
 
@@ -31,7 +31,7 @@ const Management = ({ navigation }) => {
             <Flex mt={20} p={20} mb={10} >
                 <ListItem
                     onPress={() => { navigation.push('GpsManagement') }}
-                    trailing={<Ionicons name='chevron-forward' />} title='Incubateurs'
+                    trailing={<Ionicons name='chevron-forward' />} title='Incubators'
                     leading={<Ionicons name='locate' size={25} color={COLORS.primary} />}
                 />
                 <ListItem
@@ -39,10 +39,10 @@ const Management = ({ navigation }) => {
                     trailing={<Ionicons name='chevron-forward' />} title='Incubations'
                     leading={<Ionicons name='stats-chart-outline' size={25} color={COLORS.primary} />}
                 />
-                <ListItem
-                    trailing={<Ionicons name='chevron-forward' />} title='suivie'
+                {/* <ListItem
+                    trailing={<Ionicons name='chevron-forward' />} title='Repports'
                     leading={<Ionicons name='settings' size={25} color={COLORS.primary} />}
-                />
+                /> */}
             </Flex>
             <View style={{ padding: 20 }} >
                 <MyCalendar />

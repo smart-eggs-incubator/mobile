@@ -1,13 +1,15 @@
 
-import { DJANGO_BASE_API_URL } from "@env"
+// import { DJANGO_BASE_API_URL as process.env.DJANGO_BASE_API_URL } from "@env"
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 
 
-console.log("BACKEND URL URL", DJANGO_BASE_API_URL);
+console.log("BACKEND URL URL", process.env.DJANGO_BASE_API_URL);
+console.log("AI URL URL", process.env.AI_BASE_API_URL);
+
 export const userAuthApi = createApi({
     reducerPath: 'userAuthApi',
-    baseQuery: fetchBaseQuery({ baseUrl: DJANGO_BASE_API_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.DJANGO_BASE_API_URL }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (user) => {

@@ -2,21 +2,39 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Flex } from '@react-native-material/core'
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { COLORS } from '../../../assets/constants/theme';
 export default function Header() {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    const [localTemperature, setLocalTemperature] = useState(0)
-    const date = new Date().getDate() + " " + monthNames[new Date().getUTCMonth() - 1] + " " + new Date().getFullYear()
-    const weather = fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/yaounde?key=XSUXP5RCZHLPT3UF8N657C9RL')
-    weather.then((res) => {
-        res.json().then((data) => {
-            const temp = (data.days[0].temp - 32) * (5 / 9)
-            // console.log('COMMING DATA ', temp.toFixed(2));
-            setLocalTemperature(temp.toFixed(2))
+    const [localTemperature, setLocalTemperature] = useState(23)
+    const date = new Date().getDate() + " " + monthNames[new Date().getUTCMonth() - 0] + " " + new Date().getFullYear()
+    // const [weather, setWeather] = useState(0)
+    // const getWeadther = async () => {
+    //     const Myweather = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/yaounde?key=282QR5EBBQMB44NMD6AZFCFBE')
+    //     Myweather.then((res) => {
+    //         res.json().then((data) => {
+    //             const temp = (data.days[0].temp - 32) * (5 / 9)
+    //             console.log(data);
+    //             // console.log('COMMING DATA ', temp.toFixed(2));
+    //             setLocalTemperature(temp.toFixed(2))
 
-        })
-    })
+    //         })
+    //     })
+    // }
+    // getWeadther()
+    // const weather = fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/yaounde?key=XSUXP5RCZHLPT3UF8N657C9RL')
+    // weather.then((res) => {
+    //     res.json().then((data) => {
+    //         const temp = (data.days[0].temp - 32) * (5 / 9)
+    //         console.log(data);
+    //         // console.log('COMMING DATA ', temp.toFixed(2));
+    //         setLocalTemperature(temp.toFixed(2))
+
+    //     }).catch((e) => {
+    //         console.log(e);
+    //     })
+    // })
     return (
         <View style={styles.header}>
             {/* <Flex fill direction='row' justify='between'>
@@ -54,7 +72,7 @@ const styles = StyleSheet.create({
     },
     meteo: {
         marginTop: 12,
-        backgroundColor: '#62444ace',
+        backgroundColor: COLORS.primary,
         padding: 12,
         borderRadius: 12
     },

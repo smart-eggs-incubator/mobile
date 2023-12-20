@@ -13,6 +13,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import GpsManagement from "./screens/GpsManagement";
 import Notifications from "./screens/Notifications";
 import Chat from "./screens/Chat";
+import Analisys from "./screens/Analisys";
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -61,7 +62,7 @@ const Tabs = () => {
 
                 options={{
 
-                    title: 'Acceuil',
+                    title: 'Home',
                     headerShown: false,
 
                     tabBarIcon: ({ focused }) => (
@@ -79,7 +80,7 @@ const Tabs = () => {
             <Tab.Screen name="Management" component={Management}
 
                 options={{
-                    title: 'Gestion',
+                    title: 'Management',
                     headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <View style={{}}>
@@ -123,6 +124,29 @@ const Tabs = () => {
                     tabBarIcon: ({ focused }) => (
                         <View style={{}}>
                             <Ionicons name="mic"
+                                size={25}
+                                style={{
+                                    color: focused ? COLORS.primary : COLORS.gray2
+                                }}
+                            />
+                        </View>
+                    ),
+
+                }}
+            />
+
+            <Tab.Screen name="Analisys" component={Analisys}
+
+                options={{
+                    title: 'Analisys',
+                    headerTintColor: COLORS.primary,
+                    headerTitleStyle: {
+                        color: COLORS.primary
+                    },
+                    headerShown: false,
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{}}>
+                            <Ionicons name="book"
                                 size={25}
                                 style={{
                                     color: focused ? COLORS.primary : COLORS.gray2

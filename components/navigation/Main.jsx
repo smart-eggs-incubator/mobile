@@ -9,6 +9,9 @@ import GpsForm from './screens/GpsForm'
 import NotificationDetails from './screens/NotificationDetails'
 import IncubationState from './screens/IncubationState'
 import StatsFirst from './components/StatsFirst'
+import FormIncubation from './screens/FormIncubation'
+import Repports from './screens/Repports'
+import NoteScreen from './screens/NoteScreen'
 
 
 const Stack = createNativeStackNavigator()
@@ -32,14 +35,14 @@ const Main = () => {
             <Stack.Screen name='GpsForm'
                 component={GpsForm}
                 options={{
-                    headerTitle: 'Formulaire Incubateur'
+                    headerTitle: 'Incubator Form'
                 }}
 
             />
             <Stack.Screen name='IncDetails'
                 component={IncubationState}
                 options={{
-                    headerTitle: 'Détails'
+                    headerTitle: 'Details'
                 }}
 
             />
@@ -59,6 +62,32 @@ const Main = () => {
 
             />
 
+            <Stack.Screen name='FormIncubation'
+                component={FormIncubation}
+                options={{
+                    headerTitle: 'Incubation'
+                }}
+
+
+            />
+
+            <Stack.Screen name='Repports'
+                component={Repports}
+                options={{
+                    headerTitle: 'Repports'
+                }}
+
+
+            />
+
+            <Stack.Screen name='Notes'
+                component={NoteScreen}
+                options={{
+                    headerTitle: 'Note'
+                }}
+
+
+            />
         </Stack.Navigator>
         // <NavigationContainer independent={true} 
 
